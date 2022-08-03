@@ -36,7 +36,7 @@ namespace Microsoft.Dynamics365.UIAutomation.Browser
         /// <summary>
         /// The default tracing source for browser automation.
         /// </summary>
-        public const int DefaultThinkTime = 2000;
+        public const int DefaultThinkTime = 800;
 
         /// <summary>
         /// Constants and defaults related to the InteractiveBrowser.

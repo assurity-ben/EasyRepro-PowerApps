@@ -370,7 +370,8 @@ namespace Microsoft.Dynamics365.UIAutomation.Api.UCI
 
             
             //Grid
-            { "Grid_Container"       , "//div[@data-type=\"Grid\"]"},
+            //{ "Grid_Container"       , "//div[@data-type=\"Grid\"]"},
+            { "Grid_Container"       , "//div[@class='ag-center-cols-container']"}, //all rows
             { "Grid_QuickFind"       , "//*[contains(@id, \'quickFind_text\')]"},
             { "Grid_NextPage"       , "//button[contains(@data-id,'moveToNextPage')]"},
             { "Grid_PreviousPage"       , "//button[contains(@data-id,'moveToPreviousPage')]"},
@@ -379,15 +380,16 @@ namespace Microsoft.Dynamics365.UIAutomation.Api.UCI
             { "Grid_ShowChart"       , "//button[contains(@aria-label,'Show Chart')]"},
             { "Grid_JumpBar"       , "//*[@id=\"JumpBarItemsList\"]"},
             { "Grid_FilterByAll"       , "//*[@id=\"All_link\"]"},
-            { "Grid_RowsContainerCheckbox"  ,   "//div[@role='checkbox']" },
+            { "Grid_RowsContainerCheckbox"  ,   "//span[@role='checkbox']" }, //tick box in row
             { "Grid_RowsContainer"       , "//div[contains(@role,'grid')]"},
             { "Grid_Rows"           , "//div[contains(@role,'row')]"},
             { "Grid_ChartSelector"           , "//span[contains(@id,'ChartSelector')]"},
             { "Grid_ChartViewList"           , "//ul[contains(@role,'listbox')]"},
             { "Grid_SortColumn",            "//div[@data-type='Grid']//div[@title='[COLNAME]']//div[contains(@class,'header')]"},
             { "Grid_CellContainer"    ,"//div[@role='grid'][@data-id='grid-cell-container']"},
-            { "Grid_ViewSelector"   , "//span[contains(@id,'ViewSelector')]" },
-            { "Grid_ViewContainer"   , "//ul[contains(@id,'ViewSelector')]" },
+            { "Grid_ViewSelector"   , "//button[contains(@id,'ViewSelector')]" },
+            //{ "Grid_ViewContainer"   , "//ul[contains(@id,'ViewSelector')]" },
+            { "Grid_ViewContainer"   , "//div[contains(@data-id,'ViewSelector')]//div[contains(@aria-labelledby,'id__1-menuSystemViews')]/ul" }, // dropdown list
             { "Grid_SubArea"   , "//*[contains(@data-id,'[NAME]')]"},
             
 

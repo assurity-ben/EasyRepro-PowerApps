@@ -1439,7 +1439,7 @@ namespace Microsoft.Dynamics365.UIAutomation.Api.UCI
                 foreach (var viewItem in viewItems)
                 {
                     var role = viewItem.GetAttribute("role");
-                    if (role != "option")
+                    if (role != "presentation")
                         continue;
 
                     var key = viewItem.Text.ToLowerString();
@@ -1533,7 +1533,7 @@ namespace Microsoft.Dynamics365.UIAutomation.Api.UCI
                 else
                     action = e => e.DoubleClick();
 
-                var xpathToCell = By.XPath($".//div[@data-id='cell-{index}-1']");
+                var xpathToCell = By.XPath($".//div[@row-index='{index}']");
                 control.WaitUntilClickable(xpathToCell,
                     cell =>
                     {
