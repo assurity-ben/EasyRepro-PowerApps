@@ -389,7 +389,7 @@ namespace Microsoft.Dynamics365.UIAutomation.Api.UCI
             { "Grid_CellContainer"    ,"//div[@role='grid'][@data-id='grid-cell-container']"},
             { "Grid_ViewSelector"   , "//button[contains(@id,'ViewSelector')]" },
             //{ "Grid_ViewContainer"   , "//ul[contains(@id,'ViewSelector')]" },
-            { "Grid_ViewContainer"   , "//div[contains(@data-id,'ViewSelector')]//div[contains(@aria-labelledby,'id__1-menuSystemViews')]/ul" }, // dropdown list
+            { "Grid_ViewContainer"   , "//div[contains(@data-id,'ViewSelector')]//ul//ul" }, // dropdown list
             { "Grid_SubArea"   , "//*[contains(@data-id,'[NAME]')]"},
             
 
@@ -440,7 +440,8 @@ namespace Microsoft.Dynamics365.UIAutomation.Api.UCI
             { "Entity_SubGridListCells", ".//div[contains(@wj-part, 'cells') and contains(@class, 'wj-cells') and contains(@role, 'grid')]" },
             { "Entity_SubGridViewPickerButton", ".//span[contains(@id, 'ViewSelector') and contains(@id, 'button')]" },
             { "Entity_SubGridViewPickerFlyout", "//div[contains(@id, 'ViewSelector') and contains(@flyoutroot, 'flyoutRootNode')]" },
-            { "Entity_SubGridCommandBar", ".//ul[contains(@data-id, 'CommandBar')]" },
+            //{ "Entity_SubGridCommandBar", ".//ul[contains(@data-id, 'CommandBar')]" },
+            { "Entity_SubGridCommandBar", ".//ul[contains(@aria-label,'[NAME]') and contains(@data-id, 'CommandBar')]" },
             { "Entity_SubGridCommandLabel", ".//button//span[text()=\"[NAME]\"]" },
             { "Entity_SubGridOverflowContainer", ".//div[contains(@data-id, 'flyoutRootNode')]" },
             { "Entity_SubGridOverflowButton", ".//button[contains(@aria-label, '[NAME]')]" },

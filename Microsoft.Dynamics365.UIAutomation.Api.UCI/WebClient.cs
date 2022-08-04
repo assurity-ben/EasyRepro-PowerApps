@@ -2018,21 +2018,12 @@ namespace Microsoft.Dynamics365.UIAutomation.Api.UCI
             });
         }
 
-        public BrowserCommandResult<bool> ClickSubGridCommand(string subGridName, string name, string subName = null, string subSecondName = null)
+        public BrowserCommandResult<bool> ClickSubGridCommand(string CommandBarName, string name, string subName = null, string subSecondName = null)
         {
             return this.Execute(GetOptions("Click SubGrid Command"), driver =>
             {
-                // Initialize required local variables
-                IWebElement subGridCommandBar = null;
-
-                // Find the SubGrid
-                var subGrid = driver.FindElement(By.XPath(AppElements.Xpath[AppReference.Entity.SubGridContents].Replace("[NAME]", subGridName)));
-
-                if (subGrid == null)
-                    throw new NotFoundException($"Unable to locate subgrid contents for {subGridName} subgrid.");
-
-                // Check if grid commandBar was found
-                if (subGrid.TryFindElement(By.XPath(AppElements.Xpath[AppReference.Entity.SubGridCommandBar].Replace("[NAME]", subGridName)), out subGridCommandBar))
+                IWebElement subGridCommandBar = driver.FindElement(By.XPath(AppElements.Xpath[AppReference.Entity.SubGridCommandBar].Replace("[NAME]", CommandBarName)));
+                if (subGridCommandBar != null)
                 {
                     //Is the button in the ribbon?
                     if (subGridCommandBar.TryFindElement(By.XPath(AppElements.Xpath[AppReference.Entity.SubGridCommandLabel].Replace("[NAME]", name)), out var command))
@@ -2059,10 +2050,10 @@ namespace Microsoft.Dynamics365.UIAutomation.Api.UCI
                                 driver.WaitForTransaction();
                             }
                             else
-                                throw new InvalidOperationException($"No command with the name '{name}' exists inside of {subGridName} Commandbar.");
+                                throw new InvalidOperationException($"No command with the name '{name}' exists inside of {CommandBarName} Commandbar.");
                         }
                         else
-                            throw new InvalidOperationException($"No command with the name '{name}' exists inside of {subGridName} CommandBar.");
+                            throw new InvalidOperationException($"No command with the name '{name}' exists inside of {CommandBarName} CommandBar.");
                     }
 
                     if (subName != null)
@@ -2077,7 +2068,7 @@ namespace Microsoft.Dynamics365.UIAutomation.Api.UCI
                             driver.WaitForTransaction();
                         }
                         else
-                            throw new InvalidOperationException($"No command with the name '{subName}' exists under the {name} command inside of {subGridName} Commandbar.");
+                            throw new InvalidOperationException($"No command with the name '{subName}' exists under the {name} command inside of {CommandBarName} Commandbar.");
 
                         // Check if we need to go to a 3rd level
                         if (subSecondName != null)
@@ -2092,12 +2083,12 @@ namespace Microsoft.Dynamics365.UIAutomation.Api.UCI
                                 driver.WaitForTransaction();
                             }
                             else
-                                throw new InvalidOperationException($"No command with the name '{subSecondName}' exists under the {subName} command inside of {name} on the {subGridName} SubGrid Commandbar.");
+                                throw new InvalidOperationException($"No command with the name '{subSecondName}' exists under the {subName} command inside of {name} on the {CommandBarName} SubGrid Commandbar.");
                         }
                     }
                 }
                 else
-                    throw new InvalidOperationException($"Unable to locate the Commandbar for the {subGrid} SubGrid.");
+                    throw new InvalidOperationException($"Unable to locate the Commandbar for the {CommandBarName}.");
 
                 return true;
             });
