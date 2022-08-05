@@ -311,6 +311,7 @@ namespace Microsoft.Dynamics365.UIAutomation.Api.UCI
             public static string CommandBarOverflowContainer = "Related_CommandBarOverflowContainer";
             public static string CommandBarOverflowButton = "Related_CommandBarOverflowButton";
             public static string CommandBarButtonList = "Related_CommandBarButtonList";
+            public static string Container = "Related_Container";
         }
 
         public static class Field
@@ -370,8 +371,7 @@ namespace Microsoft.Dynamics365.UIAutomation.Api.UCI
 
             
             //Grid
-            //{ "Grid_Container"       , "//div[@data-type=\"Grid\"]"},
-            { "Grid_Container"       , "//div[@class='ag-center-cols-container']"}, //all rows
+            { "Grid_Container"       , "//div[@class='ag-center-cols-container']"}, //all rows, updated for Grid.OpenRecord
             { "Grid_QuickFind"       , "//*[contains(@id, \'quickFind_text\')]"},
             { "Grid_NextPage"       , "//button[contains(@data-id,'moveToNextPage')]"},
             { "Grid_PreviousPage"       , "//button[contains(@data-id,'moveToPreviousPage')]"},
@@ -388,8 +388,7 @@ namespace Microsoft.Dynamics365.UIAutomation.Api.UCI
             { "Grid_SortColumn",            "//div[@data-type='Grid']//div[@title='[COLNAME]']//div[contains(@class,'header')]"},
             { "Grid_CellContainer"    ,"//div[@role='grid'][@data-id='grid-cell-container']"},
             { "Grid_ViewSelector"   , "//button[contains(@id,'ViewSelector')]" },
-            //{ "Grid_ViewContainer"   , "//ul[contains(@id,'ViewSelector')]" },
-            { "Grid_ViewContainer"   , "//div[contains(@data-id,'ViewSelector')]//ul//ul" }, // dropdown list
+            { "Grid_ViewContainer"   , "//div[contains(@data-id,'ViewSelector')]//ul//ul" }, // dropdown list, used in SwitchView
             { "Grid_SubArea"   , "//*[contains(@data-id,'[NAME]')]"},
             
 
@@ -440,7 +439,6 @@ namespace Microsoft.Dynamics365.UIAutomation.Api.UCI
             { "Entity_SubGridListCells", ".//div[contains(@wj-part, 'cells') and contains(@class, 'wj-cells') and contains(@role, 'grid')]" },
             { "Entity_SubGridViewPickerButton", ".//span[contains(@id, 'ViewSelector') and contains(@id, 'button')]" },
             { "Entity_SubGridViewPickerFlyout", "//div[contains(@id, 'ViewSelector') and contains(@flyoutroot, 'flyoutRootNode')]" },
-            //{ "Entity_SubGridCommandBar", ".//ul[contains(@data-id, 'CommandBar')]" },
             { "Entity_SubGridCommandBar", ".//ul[contains(@aria-label,'[NAME]') and contains(@data-id, 'CommandBar')]" },
             { "Entity_SubGridCommandLabel", ".//button//span[text()=\"[NAME]\"]" },
             { "Entity_SubGridOverflowContainer", ".//div[contains(@data-id, 'flyoutRootNode')]" },
@@ -562,6 +560,7 @@ namespace Microsoft.Dynamics365.UIAutomation.Api.UCI
             { "Related_CommandBarOverflowButton", ".//button[contains(@data-id, 'OverflowButton') and contains(@data-lp-id, 'SubGridAssociated')]"},
             { "Related_CommandBarSubButton" ,".//button[contains(., '[NAME]')]"},
             { "Related_CommandBarButtonList" ,"//ul[contains(@data-lp-id, 'commandbar-SubGridAssociated')]"},
+            { "Related_Container" ,"//div[contains(@id, 'entity_control')]//div[@class='ag-center-cols-container']"}, //added to handle related grids
 
             //Field
             {"Field_ReadOnly",".//*[@aria-readonly]" },

@@ -22,10 +22,16 @@ namespace Microsoft.Dynamics365.UIAutomation.Sample.UCI
             {
                 xrmApp.OnlineLogin.Login(_xrmUri, _username, _password, _mfaSecretKey);
                 xrmApp.Navigation.OpenApp("Vacancy and Market Rent Approvals");
+                //Open providers page
                 xrmApp.Navigation.OpenSubArea("Main", "Providers");
+                //Switch view
                 xrmApp.Grid.SwitchView("Active Accounts");
+                //Search for any provider
                 xrmApp.Grid.Search("Aarangi Motel");
+                //Open the provider details
                 xrmApp.Grid.OpenRecord(0);
+
+                //QuickCreate a new contact
                 xrmApp.Entity.SelectTab("Related", "Contacts");
                 xrmApp.Entity.SubGrid.ClickCommand("Contact Commands", "New Contact");
                 xrmApp.QuickCreate.SetValue("firstname", "Bugs");
@@ -33,8 +39,12 @@ namespace Microsoft.Dynamics365.UIAutomation.Sample.UCI
                 xrmApp.QuickCreate.SetValue("jobtitle", "Grey Hare");
                 xrmApp.QuickCreate.SetValue("emailaddress1", "bugs@email.com");
                 xrmApp.QuickCreate.SetValue("mobilephone", "021123456");
-                xrmApp.QuickCreate.SetValue("telephone1", "044780668");
-                xrmApp.QuickCreate.SetValue("description", "Sample test account for Bugs");
+                xrmApp.QuickCreate.Save();
+
+                //Serach for and open the new contact just created
+                xrmApp.Grid.Search("Bugs Bunny");
+                xrmApp.RelatedGrid.OpenGridRow(0);
+
                 xrmApp.ThinkTime(5000);
             }
         }

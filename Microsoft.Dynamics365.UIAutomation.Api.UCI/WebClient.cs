@@ -1870,15 +1870,14 @@ namespace Microsoft.Dynamics365.UIAutomation.Api.UCI
 
             return this.Execute(GetOptions("Open Grid Item"), driver =>
             {
-                var grid = driver.FindElement(By.XPath(AppElements.Xpath[AppReference.Grid.Container]));
-                var gridCellContainer = grid.FindElement(By.XPath(AppElements.Xpath[AppReference.Grid.CellContainer]));
-                var rowCount = gridCellContainer.GetAttribute("data-row-count");
-                var count = 0;
+                //get all rows
+                var gridCellContainer = driver.FindElement(By.XPath(AppElements.Xpath[AppReference.Related.Container]));
+                //count number of rows and verify non-zero value
+                var elems = gridCellContainer.FindElements(By.XPath("./div[@role='row']"));
+                if (elems.Count <= 0) return true;
 
-                if (rowCount == null || !int.TryParse(rowCount, out count) || count <= 0) return true;
-                var link =
-                    gridCellContainer.FindElement(
-                        By.XPath("//div[@role='gridcell'][@header-row-number='" + index + "']/following::div"));
+                var link = gridCellContainer.FindElement(
+                    By.XPath(".//div[@row-index='" + index + "']//a[@role='link']"));
 
                 if (link == null)
                     throw new InvalidOperationException($"No record with the index '{index}' exists.");
@@ -2022,6 +2021,8 @@ namespace Microsoft.Dynamics365.UIAutomation.Api.UCI
         {
             return this.Execute(GetOptions("Click SubGrid Command"), driver =>
             {
+                // removed the step to find the subgrid as this is no longer attached to a unique id,
+                // rather an auto-generated numeral which changes with each rendering of the page
                 IWebElement subGridCommandBar = driver.FindElement(By.XPath(AppElements.Xpath[AppReference.Entity.SubGridCommandBar].Replace("[NAME]", CommandBarName)));
                 if (subGridCommandBar != null)
                 {
