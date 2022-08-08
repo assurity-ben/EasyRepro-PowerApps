@@ -500,7 +500,7 @@ namespace Microsoft.Dynamics365.UIAutomation.Api.UCI
                         
             //CommandBar
             { "Cmd_Container"       , ".//ul[contains(@data-lp-id,\"commandbar-Form\")]"},
-            { "Cmd_ContainerGrid"       , "//ul[contains(@data-lp-id,\"commandbar-HomePageGrid\")]"},
+            { "Cmd_ContainerGrid"       , "//ul[contains(@data-lp-id,'commandbar-HomePageGrid') or contains(@data-lp-id,'commandbar-Form')]"},
             { "Cmd_MoreCommandsMenu"       , "//*[@id=\"__flyoutRootNode\"]"},
             { "Cmd_Button", "//*[contains(text(),'[NAME]')]"},
 
