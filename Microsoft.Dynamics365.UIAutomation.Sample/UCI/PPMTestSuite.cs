@@ -46,6 +46,8 @@ namespace Microsoft.Dynamics365.UIAutomation.Sample.UCI
                 xrmApp.CommandBar.ClickCommand("Create Invitation");
                 xrmApp.CommandBar.ClickCommand("Save");
                 xrmApp.ThinkTime(5000);
+
+
             }
         }
 
